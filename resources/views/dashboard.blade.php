@@ -253,7 +253,7 @@
                                 <path d="M20 44a16 16 0 0024 0"/>
                             </svg>
                         </div>
-                        {{-- <div class="p-4">
+                        <div class="p-4">
                             <h3 class="font-bold text-lg text-gray-800 mb-2">DJ & Musik</h3>
                             <p class="text-gray-600 text-sm mb-3">Professionelle DJ-Services für Ihre Veranstaltung, Party oder Event.</p>
                             <a href="{{ route('services.music') }}" class="text-orange-500 hover:text-orange-600 font-medium inline-flex items-center">
@@ -262,13 +262,13 @@
                                     <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                                 </svg>
                             </a>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Merch Section -->
-            {{-- <div class="mb-12 bg-white rounded-lg shadow-sm border border-gray-100 p-8">
+            <div class="mb-12 bg-white rounded-lg shadow-sm border border-gray-100 p-8">
                 <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Street Food Merch</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="col-span-2">
@@ -292,7 +292,7 @@
                         </svg>
                     </div>
                 </div>
-            </div> --}}
+            </div>
 
             <!-- Location Section -->
             <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-8 mb-12">
