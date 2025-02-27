@@ -16,7 +16,7 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-white">
-            @include('layouts.navigation')
+            <livewire:layout.navigation />
 
             <!-- Page Heading -->
             @if (isset($header))
@@ -35,8 +35,5 @@
             <!-- Footer -->
             @include('layouts.footer')
         </div>
-
-        <!-- Alpine.js -->
-        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     </body>
 </html>
