@@ -68,60 +68,69 @@
                 <!-- Right Column: Contact Form & Pricing -->
                 <div>
                     <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-8 mb-8">
-                        <h2 class="text-2xl font-bold text-gray-800 mb-6">Foodtruck anfragen</h2>
-                        
-                        @if ($success)
-                            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
+                        <div x-data="{ showSuccess: @entangle('success') }" 
+                            x-init="$watch('showSuccess', value => {
+                                if (value === true) {
+                                    setTimeout(() => {
+                                        showSuccess = false;
+                                        $wire.set('success', false);
+                                    }, 5000);
+                                }
+                            })">
+                            
+                            <h2 class="text-2xl font-bold text-gray-800 mb-6">Foodtruck anfragen</h2>
+                            
+                            <div x-show="showSuccess" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
                                 <p>Vielen Dank für Ihre Anfrage! Wir werden uns in Kürze bei Ihnen melden.</p>
                             </div>
-                        @endif
-                        
-                        <form wire:submit.prevent="submit">
-                            <div class="mb-4">
-                                <label for="name" class="block text-gray-700 font-medium mb-2">Name *</label>
-                                <input type="text" id="name" wire:model="name" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
-                                @error('name') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-                            </div>
                             
-                            <div class="mb-4">
-                                <label for="email" class="block text-gray-700 font-medium mb-2">E-Mail *</label>
-                                <input type="email" id="email" wire:model="email" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
-                                @error('email') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label for="phone" class="block text-gray-700 font-medium mb-2">Telefon *</label>
-                                <input type="text" id="phone" wire:model="phone" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
-                                @error('phone') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label for="date" class="block text-gray-700 font-medium mb-2">Datum der Veranstaltung *</label>
-                                <input type="date" id="date" wire:model="date" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
-                                @error('date') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label for="location" class="block text-gray-700 font-medium mb-2">Veranstaltungsort *</label>
-                                <input type="text" id="location" wire:model="location" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
-                                @error('location') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label for="guests" class="block text-gray-700 font-medium mb-2">Anzahl der Gäste *</label>
-                                <input type="number" id="guests" wire:model="guests" min="20" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
-                                @error('guests') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-                            </div>
-                            
-                            <div class="mb-6">
-                                <label for="message" class="block text-gray-700 font-medium mb-2">Besondere Wünsche</label>
-                                <textarea id="message" wire:model="message" rows="4" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50"></textarea>
-                            </div>
-                            
-                            <button type="submit" class="w-full bg-orange-500 text-white py-3 px-6 rounded-lg font-semibold hover:bg-orange-600 transition-colors duration-200">
-                                Anfrage senden
-                            </button>
-                        </form>
+                            <form wire:submit.prevent="submit">
+                                <div class="mb-4">
+                                    <label for="name" class="block text-gray-700 font-medium mb-2">Name *</label>
+                                    <input type="text" id="name" wire:model="name" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
+                                    @error('name') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="email" class="block text-gray-700 font-medium mb-2">E-Mail *</label>
+                                    <input type="email" id="email" wire:model="email" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
+                                    @error('email') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="phone" class="block text-gray-700 font-medium mb-2">Telefon *</label>
+                                    <input type="text" id="phone" wire:model="phone" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
+                                    @error('phone') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="date" class="block text-gray-700 font-medium mb-2">Datum der Veranstaltung *</label>
+                                    <input type="date" id="date" wire:model="date" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
+                                    @error('date') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="location" class="block text-gray-700 font-medium mb-2">Veranstaltungsort *</label>
+                                    <input type="text" id="location" wire:model="location" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
+                                    @error('location') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="guests" class="block text-gray-700 font-medium mb-2">Anzahl der Gäste *</label>
+                                    <input type="number" id="guests" wire:model="guests" min="20" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
+                                    @error('guests') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                                </div>
+                                
+                                <div class="mb-6">
+                                    <label for="message" class="block text-gray-700 font-medium mb-2">Besondere Wünsche</label>
+                                    <textarea id="message" wire:model="message" rows="4" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50"></textarea>
+                                </div>
+                                
+                                <button type="submit" class="w-full bg-orange-500 text-white py-3 px-6 rounded-lg font-semibold hover:bg-orange-600 transition-colors duration-200">
+                                    Anfrage senden
+                                </button>
+                            </form>
+                        </div>
                     </div>
                     
                     <!-- Pricing -->

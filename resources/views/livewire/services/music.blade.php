@@ -96,86 +96,97 @@
                 <!-- Right Column: Contact Form & Pricing -->
                 <div>
                     <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-8 mb-8">
-                        <h2 class="text-2xl font-bold text-gray-800 mb-6">DJ & Musik anfragen</h2>
-                        
-                        @if ($success)
-                            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
+                        <div x-data="{ showSuccess: @entangle('success') }" 
+                            x-init="$watch('showSuccess', value => {
+                                if (value === true) {
+                                    setTimeout(() => {
+                                        showSuccess = false;
+                                        $wire.set('success', false);
+                                    }, 5000);
+                                }
+                            })">
+                            
+                            <h2 class="text-2xl font-bold text-gray-800 mb-6">DJ & Musik anfragen</h2>
+                            
+                            <div x-show="showSuccess" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
                                 <p>Vielen Dank für Ihre Anfrage! Wir werden uns in Kürze bei Ihnen melden.</p>
                             </div>
-                        @endif
-                        
-                        <form wire:submit.prevent="submit">
-                            <div class="mb-4">
-                                <label for="name" class="block text-gray-700 font-medium mb-2">Name *</label>
-                                <input type="text" id="name" wire:model="name" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
-                                @error('name') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-                            </div>
                             
-                            <div class="mb-4">
-                                <label for="email" class="block text-gray-700 font-medium mb-2">E-Mail *</label>
-                                <input type="email" id="email" wire:model="email" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
-                                @error('email') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                            <form wire:submit.prevent="submit">
+                                <div class="mb-4">
+                                    <label for="name" class="block text-gray-700 font-medium mb-2">Name *</label>
+                                    <input type="text" id="name" wire:model="name" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
+                                    @error('name') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="email" class="block text-gray-700 font-medium mb-2">E-Mail *</label>
+                                    <input type="email" id="email" wire:model="email" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
+                                    @error('email') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="phone" class="block text-gray-700 font-medium mb-2">Telefon *</label>
+                                    <input type="text" id="phone" wire:model="phone" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
+                                    @error('phone') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="date" class="block text-gray-700 font-medium mb-2">Datum der Veranstaltung *</label>
+                                    <input type="date" id="date" wire:model="date" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
+                                    @error('date') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="eventType" class="block text-gray-700 font-medium mb-2">Art der Veranstaltung *</label>
+                                    <select id="eventType" wire:model="eventType" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
+                                        <option value="">Bitte wählen</option>
+                                        <option value="Hochzeit">Hochzeit</option>
+                                        <option value="Firmenfeier">Firmenfeier</option>
+                                        <option value="Geburtstag">Geburtstag</option>
+                                        <option value="Öffentliches Event">Öffentliches Event</option>
+                                        <option value="Private Feier">Private Feier</option>
+                                        <option value="Sonstiges">Sonstiges</option>
+                                    </select>
+                                    @error('eventType') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="location" class="block text-gray-700 font-medium mb-2">Veranstaltungsort *</label>
+                                    <input type="text" id="location" wire:model="location" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
+                                    @error('location') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="hours" class="block text-gray-700 font-medium mb-2">Dauer (Stunden) *</label>
+                                    <div class="mb-4">
+                                        <label for="hours" class="block text-gray-700 font-medium mb-2">Dauer (Stunden) *</label>
+                                        <input type="number" id="hours" wire:model="hours" min="3" max="12" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
+                                        @error('hours') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <label for="guests" class="block text-gray-700 font-medium mb-2">Anzahl der Gäste *</label>
+                                        <input type="number" id="guests" wire:model="guests" min="1" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
+                                        @error('guests') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <label for="musicStyle" class="block text-gray-700 font-medium mb-2">Bevorzugte Musikrichtung</label>
+                                        <input type="text" id="musicStyle" wire:model="musicStyle" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50" placeholder="z.B. 80er, Charts, Rock, Jazz, Electro...">
+                                    </div>
+                                    
+                                    <div class="mb-6">
+                                        <label for="message" class="block text-gray-700 font-medium mb-2">Weitere Wünsche oder Anmerkungen</label>
+                                        <textarea id="message" wire:model="message" rows="4" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50"></textarea>
+                                    </div>
+                                    
+                                    <button type="submit" class="w-full bg-orange-500 text-white py-3 px-6 rounded-lg font-semibold hover:bg-orange-600 transition-colors duration-200">
+                                        Anfrage senden
+                                    </button>
+                                </form>
                             </div>
-                            
-                            <div class="mb-4">
-                                <label for="phone" class="block text-gray-700 font-medium mb-2">Telefon *</label>
-                                <input type="text" id="phone" wire:model="phone" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
-                                @error('phone') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label for="date" class="block text-gray-700 font-medium mb-2">Datum der Veranstaltung *</label>
-                                <input type="date" id="date" wire:model="date" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
-                                @error('date') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label for="eventType" class="block text-gray-700 font-medium mb-2">Art der Veranstaltung *</label>
-                                <select id="eventType" wire:model="eventType" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
-                                    <option value="">Bitte wählen</option>
-                                    <option value="Hochzeit">Hochzeit</option>
-                                    <option value="Firmenfeier">Firmenfeier</option>
-                                    <option value="Geburtstag">Geburtstag</option>
-                                    <option value="Öffentliches Event">Öffentliches Event</option>
-                                    <option value="Private Feier">Private Feier</option>
-                                    <option value="Sonstiges">Sonstiges</option>
-                                </select>
-                                @error('eventType') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label for="location" class="block text-gray-700 font-medium mb-2">Veranstaltungsort *</label>
-                                <input type="text" id="location" wire:model="location" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
-                                @error('location') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label for="hours" class="block text-gray-700 font-medium mb-2">Dauer (Stunden) *</label>
-                                <input type="number" id="hours" wire:model="hours" min="3" max="12" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
-                                @error('hours') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label for="guests" class="block text-gray-700 font-medium mb-2">Anzahl der Gäste *</label>
-                                <input type="number" id="guests" wire:model="guests" min="1" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
-                                @error('guests') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label for="musicStyle" class="block text-gray-700 font-medium mb-2">Bevorzugte Musikrichtung</label>
-                                <input type="text" id="musicStyle" wire:model="musicStyle" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50" placeholder="z.B. 80er, Charts, Rock, Jazz, Electro...">
-                            </div>
-                            
-                            <div class="mb-6">
-                                <label for="message" class="block text-gray-700 font-medium mb-2">Weitere Wünsche oder Anmerkungen</label>
-                                <textarea id="message" wire:model="message" rows="4" class="w-full border-gray-300 rounded-md shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50"></textarea>
-                            </div>
-                            
-                            <button type="submit" class="w-full bg-orange-500 text-white py-3 px-6 rounded-lg font-semibold hover:bg-orange-600 transition-colors duration-200">
-                                Anfrage senden
-                            </button>
-                        </form>
-                    </div>
+                        </div>
                     
                     <!-- Pricing -->
                     <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-8">

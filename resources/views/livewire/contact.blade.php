@@ -20,6 +20,12 @@
                         </div>
                     @endif
                     
+                    @if ($error)
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
+                            <p>Entschuldigung, es gab ein Problem beim Senden Ihrer Nachricht. Bitte versuchen Sie es später noch einmal oder kontaktieren Sie uns direkt per Telefon.</p>
+                        </div>
+                    @endif
+                    
                     <form wire:submit.prevent="submit">
                         <div class="mb-4">
                             <label for="name" class="block text-gray-700 font-medium mb-2">Name *</label>
@@ -46,7 +52,8 @@
                         </div>
                         
                         <button type="submit" class="w-full bg-orange-500 text-white py-3 px-6 rounded-lg font-semibold hover:bg-orange-600 transition-colors duration-200">
-                            Nachricht senden
+                            <span wire:loading.remove>Nachricht senden</span>
+                            <span wire:loading>Bitte warten...</span>
                         </button>
                     </form>
                 </div>

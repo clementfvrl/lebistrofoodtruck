@@ -2,6 +2,8 @@
 
 namespace App\Livewire;
 
+use App\Mail\ContactFormMail;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class Contact extends Component
@@ -11,6 +13,7 @@ class Contact extends Component
     public $subject = '';
     public $message = '';
     public $success = false;
+    public $error = false;
 
     protected $rules = [
         'name' => 'required|min:2',
@@ -23,11 +26,37 @@ class Contact extends Component
     {
         $this->validate();
         
-        // In a real application, you would send an email or save to the database
+        // Reset error state
+        $this->error = false;
         
-        // Reset form and show success message
-        $this->reset(['name', 'email', 'subject', 'message']);
-        $this->success = true;
+        try {
+            // Send email
+            Mail::to(config('mail.from.address'))->send(
+                new ContactFormMail(
+                    $this->name,
+                    $this->email,
+                    $this->subject,
+                    $this->message
+                )
+            );
+            
+            // Reset form and show success message
+            $this->reset(['name', 'email', 'subject', 'message']);
+            $this->success = true;
+        } catch (\Exception $e) {
+            // Log the error
+            logger()->error('Contact form email failed to send', [
+                'error' => $e->getMessage(),
+                'form_data' => [
+                    'name' => $this->name,
+                    'email' => $this->email,
+                    'subject' => $this->subject,
+                ]
+            ]);
+            
+            // Set error state
+            $this->error = true;
+        }
     }
 
     public function render()

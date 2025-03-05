@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NewsletterController;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Menu;
 use App\Livewire\Catering;
@@ -36,6 +37,10 @@ Route::prefix('services')->group(function () {
 
 Route::get('/merch', Merch::class)->name('merch');
 Route::get('/contact', Contact::class)->name('contact');
+
+// Newsletter routes
+Route::get('/newsletter/confirm', [NewsletterController::class, 'confirm'])->name('newsletter.confirm');
+Route::get('/newsletter/confirmed', [NewsletterController::class, 'confirmed'])->name('newsletter.confirmed');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])
