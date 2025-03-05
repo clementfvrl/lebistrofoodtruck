@@ -21,13 +21,13 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white" wire:navigate>
                         {{ __('Startseite') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('menu')" :active="request()->routeIs('menu')" class="text-white">
+                    <x-nav-link :href="route('menu')" :active="request()->routeIs('menu')" class="text-white" wire:navigate>
                         {{ __('Speisekarte') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('catering')" :active="request()->routeIs('catering')" class="text-white">
+                    <x-nav-link :href="route('catering')" :active="request()->routeIs('catering')" class="text-white" wire:navigate>
                         {{ __('Catering') }}
                     </x-nav-link>
                     
@@ -44,22 +44,22 @@
                             </span>
                         </x-slot>
                         <x-slot name="content">
-                            <x-dropdown-link :href="route('services.foodtruck')">
+                            <x-dropdown-link :href="route('services.foodtruck')" wire:navigate>
                                 {{ __('Foodtruck Mieten') }}
                             </x-dropdown-link>
-                            <x-dropdown-link :href="route('services.photobooth')">
+                            <x-dropdown-link :href="route('services.photobooth')" wire:navigate>
                                 {{ __('Photobooth Mieten') }}
                             </x-dropdown-link>
-                            <x-dropdown-link :href="route('services.music')">
+                            <x-dropdown-link :href="route('services.music')" wire:navigate>
                                 {{ __('DJ & Musik') }}
                             </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
                     
-                    <x-nav-link :href="route('merch')" :active="request()->routeIs('merch')" class="text-white">
+                    <x-nav-link :href="route('merch')" :active="request()->routeIs('merch')" class="text-white" wire:navigate>
                         {{ __('Merch') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('contact')" :active="request()->routeIs('contact')" class="text-white">
+                    <x-nav-link :href="route('contact')" :active="request()->routeIs('contact')" class="text-white" wire:navigate>
                         {{ __('Kontakt') }}
                     </x-nav-link>
                 </div>
@@ -80,13 +80,13 @@
                                 </div>
                             </button>
                         @else
-                            <a href="{{ route('login') }}" class="text-white hover:text-orange-200 mr-4">{{ __('Anmelden') }}</a>
-                            <a href="{{ route('register') }}" class="bg-white text-orange-600 hover:bg-orange-100 px-4 py-2 rounded-md">{{ __('Registrieren') }}</a>
+                            <a href="{{ route('login') }}" class="text-white hover:text-orange-200 mr-4" wire:navigate>{{ __('Anmelden') }}</a>
+                            <a href="{{ route('register') }}" class="bg-white text-orange-600 hover:bg-orange-100 px-4 py-2 rounded-md" wire:navigate>{{ __('Registrieren') }}</a>
                         @endauth
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile')">
+                        <x-dropdown-link :href="route('profile')"  wire:navigate>
                             {{ __('Profil') }}
                         </x-dropdown-link>
 
@@ -115,13 +115,13 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden bg-orange-400">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white">
+            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white" wire:navigate>
                 {{ __('Startseite') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('menu')" :active="request()->routeIs('menu')" class="text-white">
+            <x-responsive-nav-link :href="route('menu')" :active="request()->routeIs('menu')" class="text-white" wire:navigate>
                 {{ __('Speisekarte') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('catering')" :active="request()->routeIs('catering')" class="text-white">
+            <x-responsive-nav-link :href="route('catering')" :active="request()->routeIs('catering')" class="text-white" wire:navigate>
                 {{ __('Catering') }}
             </x-responsive-nav-link>
             
@@ -135,22 +135,22 @@
                     </svg>
                 </button>
                 <div x-show="open" class="pl-4">
-                    <x-responsive-nav-link :href="route('services.foodtruck')" :active="request()->routeIs('services.foodtruck')" class="text-white">
+                    <x-responsive-nav-link :href="route('services.foodtruck')" :active="request()->routeIs('services.foodtruck')" class="text-white" wire:navigate>
                         {{ __('Foodtruck Mieten') }}
                     </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="route('services.photobooth')" :active="request()->routeIs('services.photobooth')" class="text-white">
+                    <x-responsive-nav-link :href="route('services.photobooth')" :active="request()->routeIs('services.photobooth')" class="text-white" wire:navigate>
                         {{ __('Photobooth Mieten') }}
                     </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="route('services.music')" :active="request()->routeIs('services.music')" class="text-white">
+                    <x-responsive-nav-link :href="route('services.music')" :active="request()->routeIs('services.music')" class="text-white" wire:navigate>
                         {{ __('DJ & Musik') }}
                     </x-responsive-nav-link>
                 </div>
             </div>
             
-            <x-responsive-nav-link :href="route('merch')" :active="request()->routeIs('merch')" class="text-white">
+            <x-responsive-nav-link :href="route('merch')" :active="request()->routeIs('merch')" class="text-white" wire:navigate>
                 {{ __('Merch') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('contact')" :active="request()->routeIs('contact')" class="text-white">
+            <x-responsive-nav-link :href="route('contact')" :active="request()->routeIs('contact')" class="text-white" wire:navigate>
                 {{ __('Kontakt') }}
             </x-responsive-nav-link>
         </div>
@@ -164,7 +164,7 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile')" class="text-white">
+                <x-responsive-nav-link :href="route('profile')" class="text-white" wire:navigate>
                     {{ __('Profil') }}
                 </x-responsive-nav-link>
 
@@ -179,10 +179,10 @@
         @else
         <div class="pt-4 pb-1 border-t border-orange-300">
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('login')" class="text-white">
+                <x-responsive-nav-link :href="route('login')" class="text-white" wire:navigate>
                     {{ __('Anmelden') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('register')" class="text-white">
+                <x-responsive-nav-link :href="route('register')" class="text-white" wire:navigate>
                     {{ __('Registrieren') }}
                 </x-responsive-nav-link>
             </div>
