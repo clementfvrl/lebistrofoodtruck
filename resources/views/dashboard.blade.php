@@ -1,44 +1,41 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Willkommen') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <!-- Hero Section -->
-            <div class="bg-gradient-to-r from-orange-500 to-beige-400 rounded-lg shadow-xl mb-12 overflow-hidden">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="p-8 flex items-center">
-                        <div>
-                            <h1 class="text-4xl font-bold text-white mb-4">Authentisches Street Food</h1>
-                            <p class="text-white text-lg mb-6">Die besten Burger, Wraps und mehr - frisch und mit viel Liebe zubereitet!</p>
-                            <div>
-                                <a href="{{ route('menu') }}" class="bg-white text-orange-600 hover:bg-orange-100 px-6 py-3 rounded-lg font-semibold inline-flex items-center transition-all duration-300">
-                                    Menü entdecken
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
+    <!-- Hero Section with Image -->
+    <div class="relative overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="{{ asset('images/header.jpg') }}" alt="Street Food" class="w-full h-full object-cover">
+            <!-- Dark Overlay for better text readability -->
+            <div class="absolute inset-0 bg-black opacity-50"></div>
+        </div>
+        
+        <!-- Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+            <div class="text-center sm:text-left">
+                <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
+                    <span class="block">Authentisches Street Food</span>
+                    <span class="block text-orange-400">Einzigartiges Geschmackserlebnis</span>
+                </h1>
+                <p class="mt-6 max-w-lg mx-auto sm:mx-0 text-xl text-gray-100 sm:max-w-3xl">
+                    Entdecke die Vielfalt unserer handgemachten Burger, Wraps und mehr - frisch und mit Liebe zubereitet!
+                </p>
+                <div class="mt-10 sm:flex sm:justify-start">
+                    <div class="rounded-md shadow">
+                        <a href="{{ route('menu') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-orange-600 bg-white hover:bg-gray-100 md:py-4 md:text-lg md:px-10" wire:navigate>
+                            Unser Menü
+                        </a>
                     </div>
-                    <div class="relative h-64 md:h-auto bg-white/10 flex items-center justify-center p-8">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="white" stroke-width="1.5" class="w-48 h-48">
-                            <path d="M12 20h40v28H12z" fill="rgba(255,255,255,0.2)"/>
-                            <path d="M16 48v4"/>
-                            <path d="M48 48v4"/>
-                            <path d="M19 20L10 8h44l-9 12"/>
-                            <circle cx="24" cy="36" r="3"/>
-                            <circle cx="40" cy="36" r="3"/>
-                            <path d="M24 29v-6M40 29v-6"/>
-                            <path d="M20 14h24"/>
-                        </svg>
+                    <div class="mt-3 sm:mt-0 sm:ml-3">
+                        <a href="{{ route('catering') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-orange-500 hover:bg-orange-600 md:py-4 md:text-lg md:px-10" wire:navigate>
+                            Catering anfragen
+                        </a>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <!-- Features Section -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                 <!-- Feature 1 -->
@@ -99,7 +96,7 @@
                             <p class="text-gray-600 text-sm mb-2">Mit 100% Rindfleisch, Käse, Salat und unserer Spezialsauce</p>
                             <div class="flex justify-between items-center">
                                 <span class="font-bold text-orange-500">€9,90</span>
-                                <a href="{{ route('menu') }}" class="bg-orange-500 text-white px-3 py-1 rounded-md text-sm">Bestellen</a>
+                                <a href="{{ route('menu') }}" class="bg-orange-500 text-white px-3 py-1 rounded-md text-sm" wire:navigate>Bestellen</a>
                             </div>
                         </div>
                     </div>
@@ -117,7 +114,7 @@
                             <p class="text-gray-600 text-sm mb-2">Gefüllt mit Gemüse, Avocado und hausgemachtem Hummus</p>
                             <div class="flex justify-between items-center">
                                 <span class="font-bold text-orange-500">€8,50</span>
-                                <a href="{{ route('menu') }}" class="bg-orange-500 text-white px-3 py-1 rounded-md text-sm">Bestellen</a>
+                                <a href="{{ route('menu') }}" class="bg-orange-500 text-white px-3 py-1 rounded-md text-sm" wire:navigate>Bestellen</a>
                             </div>
                         </div>
                     </div>
@@ -136,7 +133,7 @@
                             <p class="text-gray-600 text-sm mb-2">Knusprige Pommes mit Käsesoße, Speck und Jalapeños</p>
                             <div class="flex justify-between items-center">
                                 <span class="font-bold text-orange-500">€7,50</span>
-                                <a href="{{ route('menu') }}" class="bg-orange-500 text-white px-3 py-1 rounded-md text-sm">Bestellen</a>
+                                <a href="{{ route('menu') }}" class="bg-orange-500 text-white px-3 py-1 rounded-md text-sm" wire:navigate>Bestellen</a>
                             </div>
                         </div>
                     </div>
@@ -155,13 +152,13 @@
                             <p class="text-gray-600 text-sm mb-2">Saftiges Pulled Pork mit BBQ-Sauce und Coleslaw</p>
                             <div class="flex justify-between items-center">
                                 <span class="font-bold text-orange-500">€10,90</span>
-                                <a href="{{ route('menu') }}" class="bg-orange-500 text-white px-3 py-1 rounded-md text-sm">Bestellen</a>
+                                <a href="{{ route('menu') }}" class="bg-orange-500 text-white px-3 py-1 rounded-md text-sm" wire:navigate>Bestellen</a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="flex justify-center mt-8">
-                    <a href="{{ route('menu') }}" class="bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold inline-flex items-center transition-all duration-300 hover:bg-orange-600">
+                    <a href="{{ route('menu') }}" class="bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold inline-flex items-center transition-all duration-300 hover:bg-orange-600" wire:navigate>
                         Komplette Speisekarte
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -187,7 +184,7 @@
                         <div class="p-4">
                             <h3 class="font-bold text-lg text-gray-800 mb-2">Catering</h3>
                             <p class="text-gray-600 text-sm mb-3">Unsere Catering-Dienste für Ihre Veranstaltungen, Feiern und Events.</p>
-                            <a href="{{ route('catering') }}" class="text-orange-500 hover:text-orange-600 font-medium inline-flex items-center">
+                            <a href="{{ route('catering') }}" class="text-orange-500 hover:text-orange-600 font-medium inline-flex items-center" wire:navigate>
                                 Mehr erfahren
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -211,7 +208,7 @@
                         <div class="p-4">
                             <h3 class="font-bold text-lg text-gray-800 mb-2">Foodtruck Mieten</h3>
                             <p class="text-gray-600 text-sm mb-3">Mieten Sie unseren Foodtruck für Ihre Veranstaltung oder Firmenfeier.</p>
-                            <a href="{{ route('services.foodtruck') }}" class="text-orange-500 hover:text-orange-600 font-medium inline-flex items-center">
+                            <a href="{{ route('services.foodtruck') }}" class="text-orange-500 hover:text-orange-600 font-medium inline-flex items-center" wire:navigate>
                                 Mehr erfahren
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -233,7 +230,7 @@
                         <div class="p-4">
                             <h3 class="font-bold text-lg text-gray-800 mb-2">Photobooth Mieten</h3>
                             <p class="text-gray-600 text-sm mb-3">Photobooth für Ihre Veranstaltung - für unvergessliche Erinnerungen.</p>
-                            <a href="{{ route('services.photobooth') }}" class="text-orange-500 hover:text-orange-600 font-medium inline-flex items-center">
+                            <a href="{{ route('services.photobooth') }}" class="text-orange-500 hover:text-orange-600 font-medium inline-flex items-center" wire:navigate>
                                 Mehr erfahren
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -256,7 +253,7 @@
                         <div class="p-4">
                             <h3 class="font-bold text-lg text-gray-800 mb-2">DJ & Musik</h3>
                             <p class="text-gray-600 text-sm mb-3">Professionelle DJ-Services für Ihre Veranstaltung, Party oder Event.</p>
-                            <a href="{{ route('services.music') }}" class="text-orange-500 hover:text-orange-600 font-medium inline-flex items-center">
+                            <a href="{{ route('services.music') }}" class="text-orange-500 hover:text-orange-600 font-medium inline-flex items-center" wire:navigate>
                                 Mehr erfahren
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -275,7 +272,7 @@
                         <p class="text-gray-600 mb-4">Zeigen Sie Ihre Liebe zu unserem Street Food mit unserer exklusiven Merchandise-Kollektion. T-Shirts, Caps, Taschen und mehr - alle mit unserem ikonischen Logo.</p>
                         <p class="text-gray-600 mb-4">Unsere Produkte sind aus hochwertigen Materialien gefertigt und perfekt für echte Street-Food-Fans.</p>
                         <div class="mt-6">
-                            <a href="{{ route('merch') }}" class="bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold inline-flex items-center transition-all duration-300 hover:bg-orange-600">
+                            <a href="{{ route('merch') }}" class="bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold inline-flex items-center transition-all duration-300 hover:bg-orange-600" wire:navigate>
                                 Zum Shop
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -310,11 +307,17 @@
                         <p class="text-gray-600 mb-1"><span class="font-bold">Samstag:</span> 12:00 - 23:00</p>
                         <p class="text-gray-600"><span class="font-bold">Sonntag:</span> 12:00 - 21:00</p>
                     </div>
-                    <div class="bg-beige-100 rounded-lg h-64 md:h-auto flex items-center justify-center text-orange-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
+                    <div class="bg-beige-100 rounded-lg h-64 md:h-auto overflow-hidden">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21228.182822437047!2d14.278218034765604!3d48.31202760000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47739751fd4dd095%3A0xc8dc0daf738fa9f6!2sLe%20Bistro%20Foodtruck!5e0!3m2!1sfr!2sfr!4v1741200849281!5m2!1sfr!2sfr" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            class="w-full h-full"
+                        ></iframe>
                     </div>
                 </div>
             </div>
