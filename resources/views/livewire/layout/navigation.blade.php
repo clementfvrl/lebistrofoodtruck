@@ -7,15 +7,9 @@
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}" class="flex items-center">
                         <div class="w-12 h-12 mr-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white">
-                                <path d="M3 11H21V22H3V11Z"></path>
-                                <path d="M12 2L14.5 7H9.5L12 2Z"></path>
-                                <path d="M7 7H17L15 11H9L7 7Z"></path>
-                                <path d="M8 15L16 15"></path>
-                                <path d="M8 18L16 18"></path>
-                            </svg>
+                            <img src="/images/logo.svg" alt="Le Bistro Foodtruck logo" class="rounded-md" />
                         </div>
-                        <div class="text-2xl font-bold text-white">Street Food</div>
+                        <div class="text-2xl font-bold text-white">LBF</div>
                     </a>
                 </div>
 
